@@ -19,5 +19,9 @@ class DbViewsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config.php' => config_path('db-views.php'),
         ], 'db-views');
+
+        $this->commands([
+            UpdateDbViews::class,
+        ]);
     }
 }
