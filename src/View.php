@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\DB;
 
 abstract class View
 {
-    abstract protected function name(): string;
+    abstract public function name(): string;
 
-    abstract protected function definition(): QueryBuilder|EloquentBuilder;
+    abstract public function definition(): QueryBuilder|EloquentBuilder;
 
     public static function create(): bool
     {
