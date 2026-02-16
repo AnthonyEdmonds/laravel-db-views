@@ -12,7 +12,7 @@ class ViewTest extends TestCase
     {
         // Create
         $this->assertTrue(
-            TestView::create()
+            TestView::create(),
         );
 
         $views = DB::select("SELECT name FROM sqlite_master WHERE type='view'");
