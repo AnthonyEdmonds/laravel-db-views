@@ -38,7 +38,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "DbViewsServiceProvider"
+                "AnthonyEdmonds\\LaravelDbViews\\DbViewsServiceProvider"
             ]
         }
     },
