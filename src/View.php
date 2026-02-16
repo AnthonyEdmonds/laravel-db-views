@@ -8,17 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 abstract class View
 {
-    abstract public function name(): string;
+    abstract public static function name(): string;
 
-    abstract public function definition(): QueryBuilder|EloquentBuilder;
+    abstract public static function definition(): QueryBuilder|EloquentBuilder;
 
     public static function create(): bool
     {
-        $viewClass = static::class;
-        $view = new $viewClass();
-
-        $name = $view->name();
-        $sql = $view->definition()->toRawSql();
+        $name = static::name();
+        $sql = static::definition()->toRawSql();
 
         return DB::statement(
             DB::raw("CREATE VIEW $name AS $sql")->getValue(
@@ -29,10 +26,7 @@ abstract class View
 
     public static function destroy(): bool
     {
-        $viewClass = static::class;
-        $view = new $viewClass();
-
-        $name = $view->name();
+        $name = static::name();
 
         return DB::statement("DROP VIEW IF EXISTS $name");
     }

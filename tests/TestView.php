@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\DB;
 
 class TestView extends View
 {
-    public function name(): string
+    public static function name(): string
     {
         return 'my_view';
     }
 
-    public function definition(): Builder
+    public static function definition(): Builder
     {
         return DB::query()
             ->select([
