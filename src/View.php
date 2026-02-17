@@ -63,12 +63,12 @@ abstract class View
         return DB::raw(
             implode(' ', [
                 'CASE',
-                    "WHEN $column = 1",
-                    "THEN $yes",
-                    "WHEN $column = 0",
-                    "THEN $no",
-                    "ELSE $null",
-                "END AS $as",
+                "WHEN `$column` = 1",
+                "THEN \"$yes\"",
+                "WHEN `$column` = 0",
+                "THEN \"$no\"",
+                "ELSE \"$null\"",
+                "END AS \"$as\"",
             ]),
         );
     }
