@@ -47,6 +47,22 @@ To assist with common column formatting tasks, some helpers have been provided i
 |----------------------------------------------------------------------|---------------------------------------------------------|
 | `View::boolean($column, $as, $yes = 'Yes', $no = 'No', $null = $no)` | Output a `boolean` column in "Yes", "No", "Null" format |
 
+### Using database views with Eloquent scopes
+
+To limit results from a database view, you may wish to use an existing Eloquent scope.
+
+A combination of `whereExists()` and `whereColumn()` will allow you to filter the result of a database view:
+
+```php
+DB::table('my_view')
+    ->whereExists(
+        MyModel::query()
+            ->forUser($user)
+            ->whereColumn('my_view.id', '=', 'my_models.id'),
+    )
+    ->get();
+```
+
 ## Configuration
 
 ### Views
