@@ -5,3 +5,5 @@ parameters:
     level: 5
     paths:
         - src
+    ignoreErrors:
+        - '#Trait AnthonyEdmonds\\LaravelDbViews\\AssertsDatabaseViews is used zero times and is not analysed#'

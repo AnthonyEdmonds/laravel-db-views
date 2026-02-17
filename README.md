@@ -63,6 +63,19 @@ DB::table('my_view')
     ->get();
 ```
 
+### Testing
+
+If your database views are not populated during migration, add the `AssertsDatabaseViews` trait to your `TestCase` class to make the `useDatabaseViews()` method available wherever you need it.
+
+```php
+protected function setUp(): void
+{
+    parent::setUp();
+    
+    $this->useDatabaseViews();
+}
+```
+
 ## Configuration
 
 ### Views
