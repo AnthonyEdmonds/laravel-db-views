@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\DB;
 
 abstract class View
 {
+    /**
+     * View
+     * ----
+     * Define your database view
+     */
+
     /** What the view should be called in the database */
     abstract public static function name(): string;
 
@@ -50,14 +56,20 @@ abstract class View
         string $no = 'No',
         ?string $null = null,
     ): Expression {
-        return DB::raw("
-            CASE
-                WHEN $column = 1
-                THEN $yes
-                WHEN $column = 0
-                THEN $no
-                ELSE $null
-            END AS $as
-        ");
+        if ($null === null) {
+            $null = $no;
+        }
+
+        return DB::raw(
+            implode(' ', [
+                'CASE',
+                    "WHEN $column = 1",
+                    "THEN $yes",
+                    "WHEN $column = 0",
+                    "THEN $no",
+                    "ELSE $null",
+                "END AS $as",
+            ]),
+        );
     }
 }
