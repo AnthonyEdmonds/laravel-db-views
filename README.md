@@ -24,6 +24,29 @@ Register your `View` classes in the config file then run the `update:db-views` A
 
 Running the command will cause each registered View to be deleted and recreated fresh.
 
+### Definition
+
+Each `View` consists of a name and a definition.
+
+The name should be what you want the `View` to be called in the database, such as `my_requests_view`.
+
+The definition should be an Eloquent or QueryBuilder query, which will have the needed view creation syntax prepended to it.
+
+```php
+return DB::table('requests')
+    ->select(...)
+    ->leftJoin(...)
+    ->where(...);
+```
+
+### Formatters
+
+To assist with common column formatting tasks, some helpers have been provided in the `View` class:
+
+| Method                                                               | Usage                                                   |
+|----------------------------------------------------------------------|---------------------------------------------------------|
+| `View::boolean($column, $as, $yes = 'Yes', $no = 'No', $null = $no)` | Output a `boolean` column in "Yes", "No", "Null" format |
+
 ## Configuration
 
 ### Views
