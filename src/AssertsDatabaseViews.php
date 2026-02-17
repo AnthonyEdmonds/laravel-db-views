@@ -9,6 +9,6 @@ trait AssertsDatabaseViews
 {
     public function useDatabaseViews(): void
     {
-        Artisan::call('update:db-views');
+        Artisan::call('update:db-views --no-interaction');
     }
 }
